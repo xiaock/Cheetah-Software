@@ -403,9 +403,12 @@ void SimControlPanel::on_startButton_clicked() {
         // error callback function
         std::function<void(std::string)> error_function = [this](std::string str) {
           // Qt will take care of doing the call in the UI event loop
-          QMetaObject::invokeMethod(this, [=]() {
+      /*    QMetaObject::invokeMethod(this, [=]() {
             this->errorCallback(str);
           });
+		  */
+          this->errorCallback(str);
+		  QMetaObject::invokeMethod(this, "cglee_error");
         };
 
         try {
